@@ -27,3 +27,20 @@
   sudo docker build go13
   即可看到镜像正在制作
 
+5 打标签
+  sudo docker images
+ [sudo] asura 的密码：
+ REPOSITORY                                                     TAG                 IMAGE ID            CREATED             SIZE
+ <none>                                                         <none>              04f2ed147f27        24 hours ago        578MB
+ <none>                                                         <none>              ce2a5dfa8f7d        24 hours ago        91.9MB
+ ....
+ 可以看到 仓库和tag都是空的
+
+ docker tag imageID REPOSITORY:tag
+ sudo docker tag 04f2ed147f27 asura/go13:latest
+ 再查看镜像
+ sudo docker images
+  REPOSITORY                                                     TAG                 IMAGE ID            CREATED             SIZE
+  asura/go13                                                     latest              04f2ed147f27        24 hours ago        578MB
+
+
