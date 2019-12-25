@@ -1,0 +1,29 @@
+1 安装docker服务
+    我们直接使用 ubuntu18.04仓库里的docker即可满足学习需求
+2 添加docker加速设置
+    此处省略
+3 创建一个目录 go13
+    在目录里添加 Dockerfile 文件
+    添加ali的ubuntu源镜像 ali_sources.list 文件
+4 打开 Dockerfile 文件
+  粘贴以下内容
+  ```
+  FROM ubuntu:18.04
+  MAINTAINER Asurasoft <asurasoft@126.com>
+  COPY ./ali_sources.list /etc/apt/sources.list
+  RUN apt-get update
+  RUN apt-get -y install wget curl net-tools apt-utils git
+  RUN wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+  RUN tar -C /usr/local -xzf go1.13.5.linux-amd64.tar.gz
+  RUN echo "export GOPATH=/root/.go" >> /etc/profile
+  RUN echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+  RUN echo "export GOPROXY=https://goproxy.cn,direct"
+  RUN
+  ```end
+  COPY 是从外部复制进容器
+  执行容器内命令需要加RUN
+
+  然后在go13目录的上一层， 执行命令
+  sudo docker build go13
+  即可看到镜像正在制作
+
